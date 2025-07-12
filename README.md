@@ -172,32 +172,51 @@ Recreate it as shown in Step 1.
 cat error.log
 ```
   
-🛠️ Common Errors
-❌ “Cannot open shared object”
+# Drover for Vesktop — Voice Chat Proxy Helper
 
-Ensure the file exists by running:
+## 🛠️ Common Errors
+
+### ❌ “Cannot open shared object”
+
+Ensure the file exists:
+
+```bash
 ls ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so
-If it’s missing, re-run the installer using:
+```
+
+If missing, re-run the install script:
+```bash
 ./install.sh install
+```
 ❌ “Permission denied”
 
-Fix it by running:
+Run the following commands:
+```bash
 chmod +x ~/.local/bin/vesktop-drover
-Then apply the necessary override with:
 flatpak override --user --filesystem=~/.var/app/dev.vencord.Vesktop/lib dev.vencord.Vesktop
-⚠️ Voice Chat Bypass Not Working?
+```
 
-The UDP manipulation in drover.c is currently a placeholder. If you’re in the UAE or any region with similar restrictions, reach out with details and I can customize the sendto hook to suit your region's specific blocking methods.
-🌐 Proxy Requirements
+## ⚠️ Voice Chat Bypass Not Working?
 
-Make sure your SOCKS5 proxy is up and running. You can verify this with:
+The current UDP manipulation in drover.c is a placeholder.
+If you're in the UAE (or a country with similar restrictions), share details and I can customize the sendto hook to make it work.
+
+## 🌐 Proxy Requirements
+
+Ensure your proxy server (e.g., SOCKS5) is running:
+```bash
 curl --proxy socks5://your.proxy.ip:1080 https://discord.com
-Replace your.proxy.ip and port with your actual proxy details, like: socks5://192.168.1.1:1080
-⚠️ Terms of Service Warning
+```
+Example proxy format:
+```text
+socks5://your.proxy.ip:1080
+```
+## ⚠️ Terms of Service Warning
+ Using Drover with Vesktop violates Discord’s Terms of Service.
+ This may result in a ban. Proceed at your own risk.
 
-Using Drover with Vesktop violates Discord’s Terms of Service. This means you risk getting your account banned. Proceed at your own discretion and be aware of the risks involved.
-🌍 UAE / Region Notes
+## 🌍 UAE / Region Notes
+If you're located in the UAE, the default direct-mode setup might not be enough.
+You may need custom UDP tweaks in WebRTC behavior.
 
-For users in the UAE, the default direct-mode behavior might not be sufficient. Discord voice calls use WebRTC over UDP, which is often restricted. If voice still fails, I can help you configure a more precise sendto hook tailored to your ISP's blocking patterns.
-
-If the error persists or you see a specific error message, share it (e.g., copy the output of ~/.local/bin/vesktop-drover 2> error.log; cat error.log), and I’ll help resolve it. Also, confirm your Linux distro (e.g., Ubuntu, Fedora) for tailored advice.
+Let me know if voice chat still doesn't work — I can provide a specific sendto hook.
