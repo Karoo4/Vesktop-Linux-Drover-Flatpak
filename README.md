@@ -4,9 +4,9 @@ Drover for vesktop flatpak version
 # Installation
 Step 1
 ```
-git clone (this repo)
+git clone https://github.com/Karoo4/Vesktop-Linux-Drover-Flatpak.git
 ```
-into your home directory and put it into a file with whatever name you like we will be using vesktop-drover as the file name.
+put this in your home directory and put it into a file with whatever name you like we will be using vesktop-drover as the file name.
 
 Step 2
 ```
