@@ -2,7 +2,7 @@
 Drover for vesktop flatpak version
 
 # Required Dependencies
-gcc and flatpak version of vesktop
+You need `gcc` and Vesktop Flatpak. Let’s verify and install them.
 
 **Check `gcc`**:
 ```bash
@@ -19,13 +19,13 @@ flatpak install flathub dev.vencord.Vesktop
 
 
 # Installation
-Step 1
+* Step 1
 ```
 git clone https://github.com/Karoo4/Vesktop-Linux-Drover-Flatpak.git
 ```
 put this in your home directory and put it into a file with whatever name you like we will be using vesktop-drover as the file name.
 
-Step 2
+* Step 2
 ```
 mkdir -p ~/.local/bin
 cat > ~/.local/bin/vesktop-drover << EOF
@@ -35,34 +35,16 @@ This creates the `vesktop-drover` script in `~/.local/bin` (a standard location 
  **Fix if it’s missing**:
 If `~/vesktop-drover` doesn’t exist, the `install.sh` script likely failed. Let’s re-run it after checking prerequisites.
 
-#### Step 2: Ensure Prerequisites Are Installed
-You need `gcc` and Vesktop Flatpak. Let’s verify and install them.
-
- **Check `gcc`**:
-```bash
-gcc --version
-```
-
-Step 3
-Make sure you have the flatpak version of vesktop
-```
-flatpak list | grep dev.vencord.Vesktop
-```
-if missing, install it
-```
-flatpak install flathub dev.vencord.Vesktop
-```
-
-Step 4
+* Step 3
 Navigate to your working directory (ie vesktop-drover)
 ```
 cd ~/vesktop-drover
 ```
 
-Step 5
+* Step 4
 Recreate or move the drover.c and install.sh file into this directory
 
-Step 6
+* Step 5
 ```
 chmod +x install.sh
 ./install.sh install
@@ -75,7 +57,7 @@ This should:
     Set Flatpak permissions.
 If you see errors (e.g., “gcc not found” or “Vesktop not found”), follow the instructions in the error message to install missing tools.
 
-Step 7
+* Step 6
 # Test running vesktop-drover
 ```
 ~/.local/bin/vesktop-drover
@@ -94,7 +76,7 @@ cat error.log
 ```
 and let me know about them.
 
-Step 8
+* Step 7
 If the script runs but you need to set up your proxy or voice chat bypass:
 # Configuring drover.ini
 ```
@@ -103,7 +85,7 @@ nvim ~/.var/app/dev.vencord.Vesktop/config/drover.ini
 Update the proxy or enable direct mode:
 
     For a proxy (e.g., SOCKS5):
-```
+```bash
 [drover]
 proxy = socks5://your.proxy.ip:1080
 use-nekobox-proxy = 0
@@ -112,7 +94,7 @@ direct-mode = 0
 ```
 For voice chat bypass without a proxy (e.g., UAE VoIP restrictions):
 
-```
+```bash
 [drover]
 proxy = http://127.0.0.1:1080
 use-nekobox-proxy = 0
@@ -121,7 +103,7 @@ direct-mode = 1
 ```
 Save and exit (:wq).
 
-Step 9
+* Step 8
 # Test Vesktop
 run again:
 ```
@@ -129,7 +111,7 @@ run again:
 ```
 Check if chat connects through your proxy or if voice chat works (if in a restricted region).
 
-Step 10
+* Step 9
 # Make Vesktop Use Drover from the Application Menu (Optional)
 If you want to click Vesktop in your application menu (e.g., GNOME, KDE) and have it use Drover:
 
