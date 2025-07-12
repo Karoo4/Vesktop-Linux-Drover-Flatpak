@@ -173,8 +173,8 @@ cat error.log
 ```
   
   * Common errors:
-    * “Cannot open shared object”: Ensure ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so exists (ls ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so). Re-run ./install.sh install if missing.
-      * “Permission denied”: Run chmod +x ~/.local/bin/vesktop-drover and flatpak override --user --filesystem=~/.var/app/dev.vencord.Vesktop/lib dev.vencord.Vesktop.
+    * “Cannot open shared object”: Ensure '~/.var/app/dev.vencord.Vesktop/lib/libdrover.so' exists ('ls ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so'). Re-run './install.sh install' if missing.
+      * “Permission denied”: Run 'chmod +x ~/.local/bin/vesktop-drover and flatpak override --user --filesystem=~/.var/app/dev.vencord.Vesktop/lib dev.vencord.Vesktop'.
       * Voice chat bypass not working: The UDP manipulation in drover.c is a placeholder. For UAE or similar restrictions, share details, and I can customize the sendto hook.
 
 # Notes
