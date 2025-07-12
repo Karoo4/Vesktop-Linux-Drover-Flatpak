@@ -1,6 +1,23 @@
 # Vesktop-Linux-Drover-Flatpak
 Drover for vesktop flatpak version
 
+# Required Dependencies
+gcc and flatpak version of vesktop
+
+**Check `gcc`**:
+```bash
+gcc --version
+```
+**Check `Vesktop Flatpak`**:
+```bash
+flatpak list | grep dev.vencord.Vesktop
+```
+if missing, install it:
+```bash
+flatpak install flathub dev.vencord.Vesktop
+```
+
+
 # Installation
 Step 1
 ```
