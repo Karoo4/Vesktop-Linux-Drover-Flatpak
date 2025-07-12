@@ -140,29 +140,30 @@ update-desktop-database ~/.local/share/applications
 # Troubleshooting
 Troubleshooting
 
-    Still says “is a directory”:
-        Double-check with ls -l ~/.local/bin/vesktop-drover. If it shows drwxr-xr-x, remove it:
-        bash
+Still says “is a directory”:
+    Double-check with ls -l ~/.local/bin/vesktop-drover. If it shows drwxr-xr-x, remove it:
+```
+rm -r ~/.local/bin/vesktop-drover
+```
+Recreate it as shown in Step 1.
 
-    rm -r ~/.local/bin/vesktop-drover
-    Recreate it as shown in Step 1.
-
-Script runs but Vesktop fails:
+* Script runs but Vesktop fails:
 
     Check error.log:
-    bash
-
-        ~/.local/bin/vesktop-drover 2> error.log
-        cat error.log
-        Common errors:
-            “Cannot open shared object”: Ensure ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so exists (ls ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so). Re-run ./install.sh install if missing.
-            “Permission denied”: Run chmod +x ~/.local/bin/vesktop-drover and flatpak override --user --filesystem=~/.var/app/dev.vencord.Vesktop/lib dev.vencord.Vesktop.
-    Voice chat bypass not working: The UDP manipulation in drover.c is a placeholder. For UAE or similar restrictions, share details, and I can customize the sendto hook.
+```
+~/.local/bin/vesktop-drover 2> error.log
+cat error.log
+```
+  
+  Common errors:
+      * “Cannot open shared object”: Ensure ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so exists (ls ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so). Re-run ./install.sh install if missing.
+      *  “Permission denied”: Run chmod +x ~/.local/bin/vesktop-drover and flatpak override --user --filesystem=~/.var/app/dev.vencord.Vesktop/lib dev.vencord.Vesktop.
+      *    Voice chat bypass not working: The UDP manipulation in drover.c is a placeholder. For UAE or similar restrictions, share details, and I can customize the sendto hook.
 
 # Notes
 
-    Proxy: Ensure your proxy server is running (e.g., socks5://your.proxy.ip:1080). Test with curl --proxy socks5://your.proxy.ip:1080 https://discord.com.
-    TOS: Using Drover with Vesktop violates Discord’s Terms of Service, risking account bans. Use cautiously.
-    Region: If you’re in the UAE, the direct-mode setting may need specific UDP tweaks for WebRTC. Let me know if voice chat doesn’t work.
+* Proxy: Ensure your proxy server is running (e.g., socks5://your.proxy.ip:1080). Test with curl --proxy socks5://your.proxy.ip:1080 https://discord.com.
+* TOS: Using Drover with Vesktop violates Discord’s Terms of Service, risking account bans. Use cautiously.
+* Region: If you’re in the UAE, the direct-mode setting may need specific UDP tweaks for WebRTC. Let me know if voice chat doesn’t work.
 
 If the error persists or you see a specific error message, share it (e.g., copy the output of ~/.local/bin/vesktop-drover 2> error.log; cat error.log), and I’ll help resolve it. Also, confirm your Linux distro (e.g., Ubuntu, Fedora) for tailored advice.
