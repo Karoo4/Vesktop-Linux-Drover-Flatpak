@@ -4,8 +4,7 @@ import tkinter as tk
 import webbrowser
 from tkinter import messagebox
 
-# Hardcoded GitHub URL (edit this to your repository)
-GITHUB_URL = "https://github.com/your-username/drover"
+GITHUB_URL = "https://github.com/Karoo4/Vesktop-Linux-Drover-Flatpak.git"
 
 
 class DroverGUI:
