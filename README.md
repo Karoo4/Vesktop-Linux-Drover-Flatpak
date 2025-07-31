@@ -1,165 +1,133 @@
-Drover: Discord Voice Chat Proxy and Obfuscation Tool
-Drover is a tool designed to bypass restrictions on Discord voice channels by obfuscating WebRTC packets or routing traffic through a proxy. It integrates with Vesktop (a Discord client) on Linux, specifically tested on CachyOS (Arch-based). This README guides you through using Drover via its graphical user interface (GUI).
-Prerequisites
+# Drover
 
-CachyOS or Arch-based Linux: The tool is optimized for Arch-based systems.
-Python 3 and Tkinter:sudo pacman -S python tk
+A Discord voice chat proxy and obfuscation tool that bypasses restrictions on Discord voice channels by obfuscating WebRTC packets or routing traffic through a proxy. Integrates with Vesktop (Discord client) on Linux.
 
+## Features
 
-Vesktop Flatpak: Install Vesktop if not already present:flatpak install --user flathub dev.vencord.Vesktop
+- **Direct Mode**: UDP packet obfuscation (recommended)
+- **Proxy Mode**: HTTP and SOCKS5 proxy support with optional authentication
+- **GUI Interface**: Easy-to-use graphical configuration
+- **Linux Optimized**: Tested on CachyOS (Arch-based systems)
 
+## Prerequisites
 
-GCC and glibc: Required to compile the Drover library:sudo pacman -S gcc glibc
+- **OS**: CachyOS or Arch-based Linux
+- **Python**: Python 3 with Tkinter
+- **Vesktop**: Discord client via Flatpak
+- **Build Tools**: GCC and glibc
 
+### Install Dependencies
 
+```bash
+# Install Python and Tkinter
+sudo pacman -S python tk
 
-Installation
+# Install Vesktop
+flatpak install --user flathub dev.vencord.Vesktop
 
-Download the Files:
+# Install build tools
+sudo pacman -S gcc glibc
+```
 
-Obtain drover.c, install.sh, and drover_gui.py from the repository.
-Place them in a directory (e.g., ~/Downloads/drover).
+## Installation
 
+1. **Download Files**
+   ```bash
+   # Place drover.c, install.sh, and drover_gui.py in a directory
+   cd ~/Downloads/drover
+   ```
 
-Customize GitHub URL (Optional):
+2. **Configure (Optional)**
+   ```bash
+   # Edit GitHub URL in drover_gui.py if needed
+   nano drover_gui.py
+   # Change: GITHUB_URL = "https://github.com/your-username/drover"
+   ```
 
-Open drover_gui.py in a text editor (e.g., nano drover_gui.py).
-Edit the GITHUB_URL variable to point to your repository:GITHUB_URL = "https://github.com/your-username/drover"
+3. **Launch GUI**
+   ```bash
+   python drover_gui.py
+   ```
 
+## Configuration
 
-Save the file.
+### Mode Selection
+- **Direct**: Packet obfuscation without proxy (recommended)
+- **HTTP/SOCKS5**: Route traffic through proxy
 
+### Proxy Settings (if not Direct mode)
+- **Hostname**: Proxy host (e.g., `127.0.0.1`)
+- **Port**: Proxy port (e.g., `1080`)
+- **Authentication**: Optional login/password for authenticated proxies
 
-Run the GUI:
+### Installation Process
+1. Click **Install** (green button)
+2. Configuration saved to `~/.var/app/dev.vencord.Vesktop/config/drover.ini`
+3. Library compiled and Vesktop configured automatically
 
-Navigate to the directory containing the files:cd ~/Downloads/drover
+## Usage
 
+### Launch Vesktop with Drover
+```bash
+~/.local/bin/vesktop-drover
+```
+Or launch from your application menu.
 
-Launch the GUI:python drover_gui.py
-
-
-
-
-Configure Drover:
-
-Mode Selection:
-Click HTTP or SOCKS5 to use a proxy, or Direct to bypass proxies and use packet obfuscation (recommended).
-
-
-Proxy Settings (if not in Direct mode):
-Hostname: Enter the proxy host (e.g., 127.0.0.1).
-Port Number: Enter the proxy port (e.g., 1080).
-Enable Authentication: Check to enable login and password fields for authenticated proxies.
-Login/Password: Enter credentials if authentication is enabled.
-The Proxy URL field shows the constructed URL (e.g., http://user:pass@127.0.0.1:1080).
-
-
-Direct Mode: Disables proxy fields, focusing on UDP packet obfuscation.
-
-
-Install Drover:
-
-Click Install (green button) to:
-Save drover.ini to ~/.var/app/dev.vencord.Vesktop/config/drover.ini.
-Compile drover.c and set up Vesktop with install.sh.
-
-
-A pop-up will confirm success or display errors.
-
-
-Launch Vesktop:
-
-Run Vesktop with Drover:~/.local/bin/vesktop-drover
-
-
-Or launch Vesktop from your application menu.
-
-
-View on GitHub:
-
-Click View on GitHub (gray button) to open the project’s repository in your browser.
-
-
-
-Uninstallation
-
-Open the GUI:python drover_gui.py
-
-
-Uninstall:
-Click Uninstall (red button) to remove Drover’s library, configuration, and Flatpak overrides.
-A pop-up will confirm success or display errors.
-
-
-
-Testing
-
-Verify Installation:
-Check for the library and configuration:ls ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so
+### Testing
+```bash
+# Verify installation
+ls ~/.var/app/dev.vencord.Vesktop/lib/libdrover.so
 ls ~/.var/app/dev.vencord.Vesktop/config/drover.ini
 
+# Monitor logs
+tail -f /tmp/drover.log
+```
 
+## Uninstallation
 
+1. Run the GUI: `python drover_gui.py`
+2. Click **Uninstall** (red button)
+3. Removes library, configuration, and Flatpak overrides
 
-Test Voice Channels:
-Join Discord voice channels in various regions (EU, Asia, Brazil).
-Monitor logs:tail -f /tmp/drover.log
+## Troubleshooting
 
+### GUI Issues
+```bash
+# Test Tkinter installation
+python -c "import tkinter"
 
+# Check for GUI errors
+python drover_gui.py
+```
 
+### Installation Problems
+- Ensure all files (`drover.c`, `install.sh`, `drover_gui.py`) are in the same directory
+- Check compiler output if build fails
 
-Verify Obfuscation (Direct Mode):
-Use Wireshark to confirm STUN/TURN packets are modified (randomized message types, transaction IDs, fake attributes).
+### Voice Channel Issues
+```bash
+# Check logs for errors
+tail -f /tmp/drover.log
 
+# Verify Flatpak configuration
+flatpak override --show dev.vencord.Vesktop
+```
 
-Test Proxy (HTTP/SOCKS5 Mode):
-Set a valid proxy in the GUI, click Install, and verify connectivity in Discord voice channels.
+## Technical Details
 
+- **Direct Mode**: Modifies STUN/TURN packets (randomized message types, transaction IDs, fake attributes)
+- **Proxy Support**: IPv4 addresses only (hostname support on request)
+- **GUI Window**: 450x550 pixels, fully responsive
 
+## Support
 
-Troubleshooting
+- **Repository**: Visit GitHub for updates and source code
+- **Issues**: Open an issue on the GitHub repository
+- **Contact**: Reach out to the developer for feature requests
 
-GUI Fails to Launch:
-Ensure Python and Tkinter are installed:python -c "import tkinter"
+## Notes
 
-
-Check for errors:python drover_gui.py
-
-
-
-
-Buttons Out of Frame:
-The GUI should now display all buttons fully with a window size of 450x550. If buttons are still cut off, ensure the window is not maximized or obscured by other applications.
-Run the GUI and drag the bottom edge (if possible) to check for hidden content.
-
-
-Installation Fails:
-Ensure drover.c and install.sh are in the same directory as drover_gui.py.
-Check compiler output:gcc -shared -fPIC -o libdrover.so drover.c -ldl
-
-
-
-
-Voice Channels Fail:
-Check /tmp/drover.log for errors:tail -f /tmp/drover.log
-
-
-In Direct mode, adjust obfuscate_stun_packet in drover.c and recompile via the GUI’s Install button.
-In proxy mode, verify the proxy URL format ([protocol]://[user:pass@]host:port).
-
-
-Flatpak Issues:
-Verify LD_PRELOAD:flatpak override --show dev.vencord.Vesktop
-
-
-
-
-
-Notes
-
-Direct Mode: Recommended for bypassing restrictions via UDP packet obfuscation, default in the GUI.
-Proxy Mode: Supports HTTP and SOCKS5 proxies, with optional authentication.
-Limitations: The tool assumes proxy hosts are IPv4 addresses. For hostname support, contact the developer.
-Repository: Visit the GitHub repository for updates and source code.
-
-For issues or feature requests, open an issue on the GitHub repository or contact the developer.
+- Direct mode is recommended for most use cases
+- Proxy mode supports both HTTP and SOCKS5 with authentication
+- Tool is optimized for Arch-based Linux distributions
+- Regular updates available through the GitHub repository
