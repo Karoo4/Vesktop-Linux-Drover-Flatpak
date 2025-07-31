@@ -11,7 +11,6 @@ A Discord voice chat proxy and obfuscation tool that bypasses restrictions on Di
 
 ## Prerequisites
 
-- **OS**: CachyOS or Arch-based Linux
 - **Python**: Python 3 with Tkinter
 - **Vesktop**: Discord client via Flatpak
 - **Build Tools**: GCC and glibc
@@ -37,13 +36,6 @@ sudo pacman -S gcc glibc
    cd ~/Downloads/drover
    ```
 
-2. **Configure (Optional)**
-   ```bash
-   # Edit GitHub URL in drover_gui.py if needed
-   nano drover_gui.py
-   # Change: GITHUB_URL = "https://github.com/your-username/drover"
-   ```
-
 3. **Launch GUI**
    ```bash
    python drover_gui.py
@@ -52,7 +44,7 @@ sudo pacman -S gcc glibc
 ## Configuration
 
 ### Mode Selection
-- **Direct**: Packet obfuscation without proxy (recommended)
+- **Direct**: Packet obfuscation without proxy (recommended for UAE)
 - **HTTP/SOCKS5**: Route traffic through proxy
 
 ### Proxy Settings (if not Direct mode)
@@ -127,7 +119,6 @@ flatpak override --show dev.vencord.Vesktop
 
 ## Notes
 
-- Direct mode is recommended for most use cases
+- Direct mode is recommended for most use cases (MAINLY THE UAE)
 - Proxy mode supports both HTTP and SOCKS5 with authentication
-- Tool is optimized for Arch-based Linux distributions
-- Regular updates available through the GitHub repository
+- Tool was tested on an Arch-Based system
